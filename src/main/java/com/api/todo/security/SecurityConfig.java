@@ -30,20 +30,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-            .antMatchers("/login", "/logout")
-            .permitAll()
-            .antMatchers(HttpMethod.POST, "/api/users")
-            .permitAll()
-            .antMatchers("/swagger-ui.html")
-            .hasAnyRole("ADMIN")
-            .anyRequest()
-            .authenticated()
-            .and()
-            .httpBasic()
-            .and()
-            .logout();
+        http.csrf().disable().cors().and()
+                    .authorizeRequests()
+                    .antMatchers("/logout")
+                    .permitAll()
+                    .antMatchers(HttpMethod.POST, "/api/users")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
+                    .and()
+                    .httpBasic()
+                    .and()
+                    .logout();
     }
 
 }
