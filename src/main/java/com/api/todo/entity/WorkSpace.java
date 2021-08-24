@@ -1,6 +1,5 @@
 package com.api.todo.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +26,7 @@ public class WorkSpace {
     private long wkId;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="user_id")
     private User user;
 
